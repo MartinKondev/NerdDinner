@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NerdDinner.Models.Dinner>
+
+@{
+    ViewBag.Title = "Nerd Dinner Home";
+}
+
+<h2>Upcomming dinners</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            EventDate
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Title, "Details", new {id=item.DinnerId})
+@*            <a href="Details/@item.DinnerId/">
+                @Html.DisplayFor(modelItem => item.Title)
+            </a>*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DinnerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DinnerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DinnerId })
+        </td>
+    </tr>
+}
+
+</table>

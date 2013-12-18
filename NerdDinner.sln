@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdDinner", "NerdDinner\NerdDinner.csproj", "{E26372E8-7787-4737-AC43-2EAFCC08E18B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdDinner.Tests", "NerdDinner.Tests\NerdDinner.Tests.csproj", "{A1E551B4-C428-45EF-A0D8-1DB908CE47CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "start", "start\start.csproj", "{5E64CF8C-48F1-4127-88D7-93FC162D9E86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E26372E8-7787-4737-AC43-2EAFCC08E18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26372E8-7787-4737-AC43-2EAFCC08E18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26372E8-7787-4737-AC43-2EAFCC08E18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26372E8-7787-4737-AC43-2EAFCC08E18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E551B4-C428-45EF-A0D8-1DB908CE47CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E551B4-C428-45EF-A0D8-1DB908CE47CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E551B4-C428-45EF-A0D8-1DB908CE47CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E551B4-C428-45EF-A0D8-1DB908CE47CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E64CF8C-48F1-4127-88D7-93FC162D9E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E64CF8C-48F1-4127-88D7-93FC162D9E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E64CF8C-48F1-4127-88D7-93FC162D9E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E64CF8C-48F1-4127-88D7-93FC162D9E86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
