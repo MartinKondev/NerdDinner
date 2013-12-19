@@ -1,4 +1,6 @@
-﻿@model IEnumerable<NerdDinner.Models.Dinner>
+﻿@using PagedList 
+@using System.Web.Helpers
+@model PagedList.IPagedList<NerdDinner.Models.Dinner>
 
 @{
     ViewBag.Title = "Nerd Dinner Home";
@@ -19,23 +21,33 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Title, "Details", new {id=item.DinnerId})
-@*            <a href="Details/@item.DinnerId/">
+    @for (int i = 0; i < Model.PageSize; i++)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(Model[i].Title, "Details", new { id = Model.First().DinnerId })
+                @*            <a href="Details/@item.DinnerId/">
                 @Html.DisplayFor(modelItem => item.Title)
             </a>*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DinnerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DinnerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DinnerId })
-        </td>
-    </tr>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.First().EventDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model[i].DinnerId }) |
+                @Html.ActionLink("Details", "Details", new { id = Model[i].DinnerId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model[i].DinnerId })
+            </td>
+        </tr>
+    }
+</table>
+
+@if(Model.HasPreviousPage)
+{
+    @Html.RouteLink("<<< Previous Page","UpcomingDinners",new {page = (Model.PageNumber - 1)});
 }
 
-</table>
+@if(Model.HasNextPage)
+{
+    @Html.RouteLink("Next Page >>>","UpcomingDinners",new {page = (Model.PageNumber + 1)});
+}

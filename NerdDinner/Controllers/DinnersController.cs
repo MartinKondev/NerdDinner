@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NerdDinner.Models;
+using PagedList;
 
 namespace NerdDinner.Controllers
 {
@@ -12,9 +13,9 @@ namespace NerdDinner.Controllers
         DinnerRepository repository = new DinnerRepository();
 
         // GET: /Dinners/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var dinners = repository.FindUpcommingDinners().ToList();
+            var dinners = repository.FindAllDinners().ToPagedList(page ?? 1, 9);
             return View(dinners);
         }
         //
