@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,7 +16,7 @@ namespace NerdDinner.Controllers
         // GET: /Dinners/
         public ActionResult Index(int? page)
         {
-            var dinners = repository.FindAllDinners().ToPagedList(page ?? 1, 9);
+            var dinners = repository.FindAllDinners().ToPagedList(page ?? 1, 10);
             return View(dinners);
         }
         //
@@ -29,12 +30,53 @@ namespace NerdDinner.Controllers
             }
             return View(dinner);
         }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            var dinner = new Dinner()
+            {
+                EventDate = DateTime.Now.AddDays(7),
+                HostedBy = User.Identity.Name
+            };
+            return View(dinner);
+        }
+
+        //
+        // POST: /Dinners/Create
+
+        [HttpPost, Authorize]
+        public ActionResult Create(Dinner dinner)
+        {
+            if (ModelState.IsValid)
+            {
+                //dinner.HostedBy = User.Identity.Name;
+
+                RSVP rsvp = new RSVP();
+                rsvp.AttendeeName = User.Identity.Name;
+
+                dinner.RSVPs = new EntitySet<RSVP>();
+                dinner.RSVPs.Add(rsvp);
+
+                repository.Add(dinner);
+                repository.Save();
+                return RedirectToAction("Index");
+            }
+            return View(dinner);
+        }
+
+
+
         //
         //GET: /Dinners/Edit/2
 
         public ActionResult Edit(int id)
         {
             var dinner = repository.GetDinnerByID(id);
+            if (dinner.HostedBy != User.Identity.Name)
+            {
+                return View("InvalidOwner");
+            }
             return View(dinner);
         }
 
@@ -44,6 +86,11 @@ namespace NerdDinner.Controllers
         public ActionResult Edit(int id, string str)
         {
             var dinner = repository.GetDinnerByID(id);
+            if (dinner.HostedBy != User.Identity.Name)
+            {
+                return View("InvalidOwner");
+            }
+
             return View(dinner);
         }
 
@@ -52,6 +99,11 @@ namespace NerdDinner.Controllers
         //Delete
         public ActionResult Delete(Dinner dinner)
         {
+            if (dinner.HostedBy != User.Identity.Name)
+            {
+                return View("InvalidOwner");
+            }
+
             repository.Delete(dinner);
             repository.Save();
             return View();
