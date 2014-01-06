@@ -1,41 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NerdDinner;
-using NerdDinner.Controllers;
+using NerdDinner.Models;
 
-namespace NerdDinner.Tests.Controllers
+namespace NerdDinner.Tests.Models
 {
     [TestClass]
-    public class HomeControllerTest
+    public class DinnerTest
     {
         [TestMethod]
-        public void Index()
+        public void Dinner_Should_Not_Be_Valid_When_Some_Properties_Incorrect()
         {
-            // Arrange
-            HomeController controller = new HomeController();
-
+            //Arrange
+            Dinner dinner = new Dinner()
+                {
+                    Title = "Test title",
+                    Country = "USA",
+                    ContactPhone = "BOGUS"
+                };
             // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Welcome to ASP.NET MVC!", result.ViewBag.Message);
+            bool isValid = dinner.IsValid;
+            //Assert
+            Assert.IsFalse(isValid);
         }
 
         [TestMethod]
-        public void About()
+        public void Dinner_Should_Be_Valid_When_All_Properties_Correct()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            //Arrange
+            Dinner dinner = new Dinner
+                {
+                    Title = "Test title",
+                    Description = "Some description",
+                    EventDate = DateTime.Now,
+                    HostedBy = "ScottGu",
+                    Address = "One Microsoft Way",
+                    Country = "USA",
+                    ContactPhone = "425-703-8072",
+                    Lattitude = 93,
+                    Longitude = -92,
+                };
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            bool isValid = dinner.IsValid;
 
-            // Assert
-            Assert.IsNotNull(result);
+            //Assert
+            Assert.IsTrue(isValid);
         }
     }
 }

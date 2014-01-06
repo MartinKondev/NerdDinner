@@ -11,7 +11,16 @@ namespace NerdDinner.Controllers
 {
     public class DinnersController : Controller
     {
-        DinnerRepository repository = new DinnerRepository();
+        IDinnerRepository repository;
+
+        public DinnersController(IDinnerRepository rep)
+        {
+            repository = rep;
+        }
+
+        public DinnersController() : this(new DinnerRepository())
+        {
+        }
 
         // GET: /Dinners/
         public ActionResult Index(int? page)
@@ -19,6 +28,7 @@ namespace NerdDinner.Controllers
             var dinners = repository.FindAllDinners().ToPagedList(page ?? 1, 10);
             return View(dinners);
         }
+
         //
         // GET: /Dinners/Details/2
         public ActionResult Details(int id)

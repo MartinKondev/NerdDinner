@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => Model.First().EventDate)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = Model[i].DinnerId }) ;
+                @Html.ActionLink("Details", "Details", new { id = Model[i].DinnerId }) 
                 @if(Model[i].HostedBy==(Context.User.Identity.Name))              
                 {  
                      Html.ActionLink("Edit", "Edit", new {id = Model[i].DinnerId});

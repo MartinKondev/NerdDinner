@@ -15,4 +15,23 @@
     <p>Country: @Model.Country</p>
     <p>Longitude: @Model.Longitude</p>
     <p>Lattitude: @Model.Lattitude</p>
+    @{
+        if (Request.IsAuthenticated)
+        {
+            if (Model.IsUserRegistered(Context.User.Identity.Name))
+            {
+                <p>You are registered for this event!</p>
+            }
+            else
+            {
+                <p>You are not registered for this event</p>
+            } 
+        }
+
+        else 
+        {
+            <a href="/Account/Logon">Logon</a> <td>to RSVP for this event.</td>
+        }
+    }
+
 </tr>

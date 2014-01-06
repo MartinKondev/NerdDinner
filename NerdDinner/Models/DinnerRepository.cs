@@ -5,7 +5,17 @@ using System.Web;
 
 namespace NerdDinner.Models
 {
-    public class DinnerRepository
+    public interface IDinnerRepository
+    {
+        IQueryable<Dinner> FindAllDinners();
+        IQueryable<Dinner> FindUpcommingDinners();
+        Dinner GetDinnerByID(int id);
+        void Add(Dinner dinner);
+        void Delete(Dinner dinner);
+        void Save();
+    }
+
+    public class DinnerRepository : IDinnerRepository
     {
         private NerdDinnerDataContext db = new NerdDinnerDataContext();
 

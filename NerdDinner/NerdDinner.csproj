@@ -103,6 +103,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DinnersController.cs" />
+    <Compile Include="Controllers\RSVPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -120,6 +121,10 @@
     <Content Include="App_Data\aspnet-NerdDinner-20120906143403.mdf" />
     <Content Include="App_Data\aspnet-NerdDinner-20120906143403_log.ldf">
       <DependentUpon>aspnet-NerdDinner-20120906143403.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\aspnet-NerdDinner-20131127195248.mdf" />
+    <Content Include="App_Data\aspnet-NerdDinner-20131127195248_log.ldf">
+      <DependentUpon>aspnet-NerdDinner-20131127195248.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\NerdDinnerContext-20120906143708.mdf" />
     <Content Include="App_Data\NerdDinnerContext-20120906143708_log.ldf">
@@ -193,6 +198,7 @@
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\Map.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -230,6 +236,7 @@
     <Content Include="Views\Dinners\Edit.cshtml" />
     <Content Include="Views\Dinners\Create.cshtml" />
     <Content Include="Views\Dinners\InvalidOwner.cshtml" />
+    <Content Include="Views\Dinners\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
